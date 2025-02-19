@@ -1,0 +1,119 @@
+<html>
+<head>
+    <title>
+        Authorization Page
+    </title>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <style>
+        body {
+            background-color: #ffc1c1;
+            font-family: 'Arial', sans-serif;
+        }
+        .navbar {
+            background-color: #ff6f61;
+            padding: 10px;
+            border-radius: 20px;
+        }
+        .navbar-brand {
+            font-size: 24px;
+            color: white;
+        }
+        .navbar-text {
+            color: white;
+            font-size: 20px;
+        }
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+        }
+        .login-box {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-control {
+            border-radius: 20px;
+            border: 2px solid #ff6f61;
+        }
+        .btn-custom {
+            background-color: #ff6f61;
+            color: white;
+            border-radius: 20px;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .btn-custom-google {
+            background-color: #ff6f61;
+            color: white;
+            border-radius: 20px;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .btn-custom-apple {
+            background-color: #ff6f61;
+            color: white;
+            border-radius: 20px;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .register-link {
+            color: #ff6f61;
+        }
+        .background-image {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar">
+    <a class="navbar-brand" href="#">
+        2DO
+    </a>
+    <span class="navbar-text">
+    Authorization page
+   </span>
+</nav>
+<div class="login-container">
+    <div class="login-box">
+        <form>
+            <div class="mb-3">
+                <input class="form-control" placeholder="Username" type="text"/>
+            </div>
+            <div class="mb-3">
+                <input class="form-control" placeholder="Password" type="password"/>
+            </div>
+            <div class="mb-3 text-center">
+      <span>
+       Dont have account?
+       <a class="register-link" href="#">
+        Register...
+       </a>
+      </span>
+            </div>
+            <button class="btn btn-custom" type="submit">
+                Login
+            </button>
+            <button class="btn btn-custom-google" type="button">
+                <i class="fab fa-google">
+                </i>
+                Continue with Google
+            </button>
+            <button class="btn btn-custom-apple" type="button">
+                <i class="fab fa-apple">
+                </i>
+                Continue with Apple
+            </button>
+        </form>
+    </div>
+</div>
+<img alt="Illustration of a person holding a large pencil and a clipboard with a to-do list" class="background-image" height="400" src="https://storage.googleapis.com/a1aa/image/Zds7HLTgMCUuDFUfjdWdZbIizl41M7cCtxuFJFxYyeQ.jpg" width="600"/>
+</body>
+</html>
