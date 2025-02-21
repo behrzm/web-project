@@ -1,0 +1,18 @@
+.pomodoro-timer {
+    text-align: center;
+}
+
+.settings label {
+    margin: 0 10px;
+}
+
+.timer h2 {
+    font-size: 48px;
+    margin: 20px 0;
+}
+
+.start-button, .stop-button {
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+}

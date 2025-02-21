@@ -1,17 +1,23 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { useTheme } from './ThemeContext';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
 const MainPage = () => {
+    const { theme, toggleTheme } = useTheme();
+
     const navbarStyle = {
-        backgroundColor: '#ff6f61',
+        backgroundColor: theme === 'light' ? '#ff6f61' : '#444',
         padding: '10px 20px',
         borderRadius: '20px',
         marginBottom: '20px',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
     };
 
     const usernameButtonStyle = {
-        backgroundColor: '#ff6f61',
+        backgroundColor: theme === 'light' ? '#ff6f61' : '#444',
         color: 'white',
         border: 'none',
         borderRadius: '20px',
@@ -19,54 +25,71 @@ const MainPage = () => {
     };
 
     const cardStyle = {
-        backgroundColor: '#ff9e9e',
+        backgroundColor: theme === 'light' ? '#ff9e9e' : '#555',
         borderRadius: '20px',
-        padding: '20px',
+        width: '200px',
+        height: '200px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
         textAlign: 'center',
         margin: '20px',
+        transition: 'transform 0.2s',
+        textDecoration: 'none',
     };
 
-    const cardImageStyle = {
-        width: '100px',
-        height: '100px',
+    const cardTitleStyle = {
+        fontWeight: 'bold',
+        color: 'white',
+        fontSize: '20px',
+    };
+
+    const cardContainerStyle = {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '60vh',
+    };
+
+    const handleMouseEnter = (e) => {
+        e.currentTarget.style.transform = 'scale(1.1)';
+    };
+
+    const handleMouseLeave = (e) => {
+        e.currentTarget.style.transform = 'scale(1)';
     };
 
     return (
-        <div>
+        <div style={{ backgroundColor: theme === 'light' ? '#fff' : '#333', color: theme === 'light' ? '#000' : '#fff', height: '100vh' }}>
             <nav style={navbarStyle}>
-                <a className="navbar-brand" href="#" style={{ fontSize: '24px', fontWeight: 'bold', color: 'white' }}>
-                    2DO
-                </a>
+                <Link className="navbar-brand" to="/home" style={{ fontSize: '24px', fontWeight: 'bold', color: 'white' }}>
+                    Home
+                </Link>
                 <button style={usernameButtonStyle}>
                     Username
                 </button>
+                <button onClick={toggleTheme} style={{ backgroundColor: 'transparent', border: 'none', color: 'white' }}>
+                    {theme === 'light' ? '🌙 Dark Mode' : '☀️ Light Mode'}
+                </button>
             </nav>
             <div className="container">
-                <div className="row">
-                    <div className="col-md-6">
-                        <div style={cardStyle} className="card">
-                            <img
-                                alt="Illustration of a to-do list with colorful bars"
-                                src="https://storage.googleapis.com/a1aa/image/disbPmA8mCL81Jv6Ec-4VYAyckwdyEOemlbNTkHT2ZA.jpg"
-                                style={cardImageStyle}
-                            />
-                            <h5 className="card-title" style={{ fontWeight: 'bold', marginTop: '10px' }}>
-                                To-Do List
-                            </h5>
-                        </div>
-                    </div>
-                    <div className="col-md-6">
-                        <div style={cardStyle} className="card">
-                            <img
-                                alt="Illustration of a tomato-shaped timer"
-                                src="https://storage.googleapis.com/a1aa/image/-avmx4uukvZdeSG6sk5aWzvl-4mf4RfF3QV2Eu1ZVLY.jpg"
-                                style={cardImageStyle}
-                            />
-                            <h5 className="card-title" style={{ fontWeight: 'bold', marginTop: '10px' }}>
-                                Pomodoro Timer
-                            </h5>
-                        </div>
-                    </div>
+                <div className="row" style={cardContainerStyle}>
+                    <Link
+                        to="/todo_list"
+                        style={cardStyle}
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
+                    >
+                        <h5 style={cardTitleStyle}>To-Do List</h5>
+                    </Link>
+                    <Link
+                        to="/pomodoro_timer"
+                        style={cardStyle}
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
+                    >
+                        <h5 style={cardTitleStyle}>Pomodoro Timer</h5>
+                    </Link>
                 </div>
             </div>
         </div>

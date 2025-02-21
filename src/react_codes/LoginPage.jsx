@@ -1,18 +1,27 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useTheme } from './ThemeContext';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const LoginPage = () => {
+    const navigate = useNavigate();
+    const { theme, toggleTheme } = useTheme();
+
     const containerStyle = {
-        backgroundColor: '#ffc1c1',
+        backgroundColor: theme === 'light' ? '#ffc1c1' : '#333',
+        color: theme === 'light' ? '#000' : '#fff',
         fontFamily: 'Arial, sans-serif',
         position: 'relative',
         height: '100vh',
     };
 
     const navbarStyle = {
-        backgroundColor: '#ff6f61',
+        backgroundColor: theme === 'light' ? '#ff6f61' : '#444',
         padding: '10px',
         borderRadius: '20px',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
     };
 
     const loginContainerStyle = {
@@ -23,15 +32,18 @@ const LoginPage = () => {
     };
 
     const loginBoxStyle = {
-        backgroundColor: 'rgba(255, 255, 255, 0.8)',
+        backgroundColor: theme === 'light' ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.8)',
         padding: '20px',
         borderRadius: '20px',
         boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)',
+        color: theme === 'light' ? '#000' : '#fff',
     };
 
     const formControlStyle = {
         borderRadius: '20px',
-        border: '2px solid #ff6f61',
+        border: `2px solid ${theme === 'light' ? '#ff6f61' : '#888'}`,
+        backgroundColor: theme === 'light' ? '#fff' : '#555',
+        color: theme === 'light' ? '#000' : '#fff',
     };
 
     const buttonStyle = {
@@ -44,6 +56,7 @@ const LoginPage = () => {
 
     const registerLinkStyle = {
         color: '#ff6f61',
+        cursor: 'pointer',
     };
 
     const backgroundImageStyle = {
@@ -56,6 +69,14 @@ const LoginPage = () => {
         width: '600px',
     };
 
+    const handleRegisterLinkClick = () => {
+        navigate('/registerpage');
+    };
+
+    const handleLoginButtonClick = () => {
+        navigate('/home');
+    };
+
     return (
         <div style={containerStyle}>
             <nav style={navbarStyle}>
@@ -65,6 +86,9 @@ const LoginPage = () => {
                 <span className="navbar-text" style={{ color: 'white', fontSize: '20px' }}>
                     Authorization page
                 </span>
+                <button onClick={toggleTheme} style={{ backgroundColor: 'transparent', border: 'none', color: 'white' }}>
+                    {theme === 'light' ? '🌙 Dark Mode' : '☀️ Light Mode'}
+                </button>
             </nav>
             <div style={loginContainerStyle}>
                 <div style={loginBoxStyle}>
@@ -78,12 +102,12 @@ const LoginPage = () => {
                         <div className="mb-3 text-center">
                             <span>
                                 Don't have an account?
-                                <a className="register-link" href="#" style={registerLinkStyle}>
+                                <span className="register-link" style={registerLinkStyle} onClick={handleRegisterLinkClick}>
                                     Register...
-                                </a>
+                                </span>
                             </span>
                         </div>
-                        <button className="btn" type="submit" style={buttonStyle}>
+                        <button className="btn" type="button" style={buttonStyle} onClick={handleLoginButtonClick}>
                             Login
                         </button>
                         <button className="btn" type="button" style={buttonStyle}>
@@ -95,11 +119,6 @@ const LoginPage = () => {
                     </form>
                 </div>
             </div>
-            <img
-                alt="Illustration of a person holding a large pencil and a clipboard with a to-do list"
-                src="https://storage.googleapis.com/a1aa/image/Zds7HLTgMCUuDFUfjdWdZbIizl41M7cCtxuFJFxYyeQ.jpg"
-                style={backgroundImageStyle}
-            />
         </div>
     );
 };
